@@ -1,0 +1,22 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="2.1">
+  <Form id="Form_Top" width="1024" height="50" titletext="Form_Top">
+    <Layouts>
+      <Layout width="1024" height="50" screenid="Desktop_screen">
+        <ImageViewer id="ImageViewer00" taborder="0" left="2" top="2" width="194" height="46" image="url('..\nexacrolib\resources\images\sta_TF_NexacroN.png')"/>
+        <Menu id="gds_menu" taborder="1" left="208" top="12" width="808" height="24" levelcolumn="MENU_LEVEL" captioncolumn="MENU_NAME" idcolumn="MENU_ID" innerdataset="gds_menu"/>
+      </Layout>
+      <Layout name="Desktop_screen_MDI" width="1024" height="50" screenid="Desktop_screen_MDI"/>
+    </Layouts>
+    <Script type="xscript5.1"><![CDATA[// 상단 영역 화면의 Menu 컴포넌트 onmenuclick 이벤트
+// 좌측 영역 화면에서 선언한 "fn_openForm" 함수를 호출 하는 방식으로 작성
+this.Menu00_onmenuclick = function(obj:nexacro.Menu,e:nexacro.MenuClickEventInfo)
+{
+    var objApp = nexacro.getApplication();
+    var strID  = e.id;
+    var strURL = objApp.gds_menu.lookup("MENU_ID", strID, "FORM_URL");
+
+    objApp.mainframe.VFrameSet00.HFrameSet00.LeftFrame.form.fn_openForm(objApp, strID, strURL);
+};]]></Script>
+  </Form>
+</FDL>

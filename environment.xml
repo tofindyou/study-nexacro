@@ -1,0 +1,22 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ENV version="2.1">
+  <Environment themeid="theme::blue" datatyperule="2.0">
+    <ScreenDefinition>
+      <Screen id="Desktop_screen" type="desktop"/>
+      <Screen id="Desktop_screen_MDI" type="desktop"/>
+    </ScreenDefinition>
+    <Variables>
+      <Variable id="env_userName" initval="nexacro 17"/>
+    </Variables>
+    <Cookies>
+      <Cookie id="Env_Cookie1" secure="false" initval="Env Cookie Value1"/>
+      <Cookie id="Env_Cookie2" secure="false" initval="Env Cookie Value2"/>
+      <Cookie id="Env_Cookie3" secure="false" initval="Env Cookie Value3"/>
+    </Cookies>
+    <httpheader>
+      <Variable id="Env_Http1" initval="Env HTTP Header Value1"/>
+      <Variable id="Env_Http2" initval="Env HTTP Header Value2"/>
+      <Variable id="Env_Http3" initval="Env HTTP Header Value3"/>
+    </httpheader>
+  </Environment>
+</ENV>

@@ -1,0 +1,9 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="2.1">
+  <Form id="Form_Work" width="824" height="718" titletext="Form_Work">
+    <Layouts>
+      <Layout width="824" height="718" screenid="Desktop_screen"/>
+      <Layout name="Desktop_screen_MDI" width="824" height="718" screenid="Desktop_screen_MDI"/>
+    </Layouts>
+  </Form>
+</FDL>

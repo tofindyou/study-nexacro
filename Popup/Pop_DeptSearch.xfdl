@@ -1,0 +1,89 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<FDL version="2.1">
+  <Form id="Pop_DeptSearch" width="300" height="400" titletext="New Form">
+    <Layouts>
+      <Layout height="400" mobileorientation="landscape" width="300">
+        <Static id="Static00" taborder="0" text="Department Search" left="10" top="12" width="114" height="24"/>
+        <Grid id="grd_list" taborder="1" left="10" top="50" width="280" height="300" binddataset="ds_dept" oncelldblclick="fn_ok">
+          <Formats>
+            <Format id="default">
+              <Columns>
+                <Column size="81"/>
+                <Column size="197"/>
+              </Columns>
+              <Rows>
+                <Row size="24" band="head"/>
+                <Row size="24"/>
+              </Rows>
+              <Band id="head">
+                <Cell text="Dept Code"/>
+                <Cell col="1" text="Dept Name"/>
+              </Band>
+              <Band id="body">
+                <Cell text="bind:DEPT_CD" textAlign="center"/>
+                <Cell col="1" text="bind:DEPT_NAME"/>
+              </Band>
+            </Format>
+          </Formats>
+        </Grid>
+        <Button id="btn_ok" taborder="2" text="OK" left="84" top="358" width="60" height="24" onclick="fn_ok"/>
+        <Button id="btn_cancel" taborder="3" text="Cancel" left="160" top="358" width="60" height="24" onclick="fn_cancel"/>
+      </Layout>
+    </Layouts>
+    <Objects>
+      <Dataset id="ds_dept" onload="Form_onload">
+        <ColumnInfo>
+          <Column id="DEPT_CD" type="STRING" size="32"/>
+          <Column id="DEPT_NAME" type="STRING" size="32"/>
+        </ColumnInfo>
+        <Rows>
+          <Row>
+            <Col id="DEPT_CD">01</Col>
+            <Col id="DEPT_NAME">Accounting Team</Col>
+          </Row>
+          <Row>
+            <Col id="DEPT_CD">02</Col>
+            <Col id="DEPT_NAME">HR Team</Col>
+          </Row>
+          <Row>
+            <Col id="DEPT_CD">03</Col>
+            <Col id="DEPT_NAME">Sales Team</Col>
+          </Row>
+          <Row>
+            <Col id="DEPT_CD">04</Col>
+            <Col id="DEPT_NAME">Design Team</Col>
+          </Row>
+          <Row>
+            <Col id="DEPT_CD">05</Col>
+            <Col id="DEPT_NAME">Education Team</Col>
+          </Row>
+        </Rows>
+      </Dataset>
+    </Objects>
+    <Script type="xscript5.1"><![CDATA[// 부서 검색 화면에서 리턴 보내주는 스크립트
+this.fn_ok = function()
+{
+    var sRtn =  this.ds_dept.getColumn(this.ds_dept.rowposition, "DEPT_CD") + "|";
+        sRtn += this.ds_dept.getColumn(this.ds_dept.rowposition, "DEPT_NAME");
+    this.close(sRtn);
+}
+
+// 부서 검색 화면을 종료하는 스크립트
+this.fn_cancel = function(obj:nexacro.Button,e:nexacro.ClickEventInfo)
+{
+    this.close();
+};
+
+// 부서 검색 화면의 onload 이벤트
+this.Form_onload = function(obj:nexacro.NormalDataset,e:nexacro.DSLoadEventInfo)
+{
+	this.transaction("svcCode"
+                    ,"SvcURL::select_code.jsp"
+                    ,""
+                    ,"ds_dept=out_dept ds_pos=out_pos" // 트랜잭션의 3번째(서버로 보내는 데이터셋), 4번째(서버에서 받을 데이터셋) 인자에 빈칸으로 구분을 하여 여러개의 데이터셋을 보내거나 받을 수 있습니다. / 서버에서 보내는 데이터를 받을 DataSet의 ID
+                    ,""
+                    ,"fn_callback");
+};
+]]></Script>
+  </Form>
+</FDL>
